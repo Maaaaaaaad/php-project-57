@@ -23,5 +23,7 @@ if (file_exists(__DIR__ . '/../' . '.env'))
     $dotenv->load();
 } else{
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/etc/secrets/', '.env');
+
+    dump();
     $dotenv->load();
 }

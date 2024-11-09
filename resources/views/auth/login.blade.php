@@ -1,8 +1,11 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}">                     <h2 class="text-center"><a href="{{ url('/') }}">Менеджер задач</a></h2>
         @csrf
+
+
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -32,7 +35,7 @@
                 </a>
             @endif
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('Войти') }}
             </x-primary-button>
         </div>
     </form>
