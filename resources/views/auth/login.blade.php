@@ -1,16 +1,19 @@
 <x-guest-layout>
+
+    <h2 class="text-center"><a href="{{ url('/') }}">Менеджер задач</a></h2>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <form method="POST" action="{{ route('login') }}">                     <h2 class="text-center"><a href="{{ url('/') }}">Менеджер задач</a></h2>
+
+    <!-- Validation Errors -->
+    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+    <form method="POST" action="{{ route('login') }}">
         @csrf
-
-
-
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <!-- Password -->
         <div class="mt-4">
@@ -19,7 +22,6 @@
                           type="password"
                           name="password"
                           required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
         <!-- Remember Me -->
         <div class="block mt-4">
