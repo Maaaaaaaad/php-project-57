@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
@@ -17,7 +17,6 @@ WORKDIR /app
 
 COPY . .
 RUN composer install
-RUN npm install
 RUN npm ci
 RUN npm run build
 
