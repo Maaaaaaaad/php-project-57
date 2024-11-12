@@ -19,10 +19,23 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('task_statuses', [StatusController::class, 'index'])
-    ->name('task.statuses');
+    ->name('statuses');
 Route::get('task_statuses/create', [StatusController::class, 'create'])
-    ->name('create.status');
-Route::post('task_statuses', [StatusController::class, 'store'])
-    ->name('store.status');
+    ->name('status.create');
+Route::post('task_statuses/create', [StatusController::class, 'store'])
+    ->name('status.store');
+
+Route::get('task_statuses/{id}', [StatusController::class, 'destroy'])
+    ->name('status.destroy');
+Route::patch('task_statuses/{id}', [StatusController::class, 'update'])
+    ->name('status.update');
+
+Route::get('task_statuses/{id}/edit', [StatusController::class, 'edit'])
+    ->name('status.edit');
+Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
+    ->name('status.edit');
+
+
+
 
 require __DIR__.'/auth.php';

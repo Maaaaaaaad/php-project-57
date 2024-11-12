@@ -1,6 +1,6 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
-        <h2 class="text-center"><a href="{{ url('/') }}">Менеджер задач</a></h2>
+        <h2 class="text-center mb-4 text-4xl"><a href="{{ url('/') }}">Менеджер задач</a></h2>
         @csrf
 
         <!-- Validation Errors -->

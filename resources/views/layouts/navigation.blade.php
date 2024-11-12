@@ -37,7 +37,7 @@
                         Задачи                                </a>
                 </li>
                 <li>
-                    <a href="{{ route('task.statuses') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('statuses') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         Статусы                                </a>
                 </li>
                 <li>

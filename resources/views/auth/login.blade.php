@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <h2 class="text-center"><a href="{{ url('/') }}">Менеджер задач</a></h2>
+    <h2 class="text-center mb-4 text-4xl"><a href="{{ url('/') }}">Менеджер задач</a></h2>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

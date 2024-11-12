@@ -15,30 +15,21 @@ use Illuminate\View\View;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $input = $request->input('q');
 
-        $status = DB::table('statuses')->get();
+        $statuses = DB::table('statuses')->get();
 
-        return view('statuses/show-status', compact('status'));
+        return view('statuses/show-status', compact('statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $status = new Status();
         return view('statuses/create-status', compact('status'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -49,41 +40,36 @@ class StatusController extends Controller
         $status->fill($request->all());
         $status->save();
 
-
-
-        return redirect()->route('task.statuses');
+        return redirect()->route('statuses');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Status $status)
     {
         $newStatus = new StatusController();
         return view('statuses/show-status', compact('status', 'newStatus'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Status $status)
+    public function edit($id)
     {
-        //
+        $status = Status::findOrFail($id);
+        return view('statuses/edit-status', compact('status'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateStatusRequest $request, Status $status)
+    public function update(Request $request, $id)
     {
-        //
+        $status = Status::findOrFail($id);
+        $data = $request->validate([
+            'name' => 'required|unique:statuses'
+        ]);
+
+        $status->fill($data);
+        $status->save();
+
+        return redirect()->route('statuses');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
-        //
+        $status = Status::find($id);
+        if ($status) {
+            $status->delete();
+        }
+        return redirect()->route('statuses');
     }
 }
