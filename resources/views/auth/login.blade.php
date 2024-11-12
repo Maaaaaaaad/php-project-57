@@ -6,7 +6,8 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <!-- Validation Errors -->
-    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <x-input-error :errors="$errors->get('email')" class="mt-2" />
+    <x-input-error :errors="$errors->get('password')" class="mt-2" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -22,6 +23,7 @@
                           type="password"
                           name="password"
                           required autocomplete="current-password" />
+
         </div>
         <!-- Remember Me -->
         <div class="block mt-4">
