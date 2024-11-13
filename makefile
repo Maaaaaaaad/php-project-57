@@ -9,7 +9,6 @@ setup:
 	cp -n .env.example .env
 	php artisan key:gen --ansi
 	touch database/database.sqlite
-	php artisan migrate
 	php artisan migrate:fresh --seed --seeder=StatusesTableSeeder
 	npm install
 	npm ci
