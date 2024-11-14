@@ -10,7 +10,7 @@ use Tests\TestCase;
 class EditStatusTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_can_edit_status()
+    public function test_can_edit_status()  : void
     {
         $statusOld = Status::factory()->create();
 

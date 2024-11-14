@@ -17,7 +17,7 @@ class AddStatusTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_can_add_new_status()
+    public function test_can_add_new_status() : void
     {
         $status = Status::factory()->create();
 
