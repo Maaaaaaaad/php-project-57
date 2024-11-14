@@ -3,13 +3,14 @@
 namespace Tests\Feature\Status;
 
 use App\Models\Status;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 
 class AddStatusTest extends TestCase
 {
-
-/*    public function test_status_screen_can_be_rendered(): void
+    use RefreshDatabase;
+    public function test_status_screen_can_be_rendered(): void
     {
         $response = $this->get('/task_statuses');
 
@@ -42,5 +43,5 @@ class AddStatusTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors();
-    }*/
+    }
 }

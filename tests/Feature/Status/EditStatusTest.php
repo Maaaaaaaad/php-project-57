@@ -3,12 +3,14 @@
 namespace Tests\Feature\Status;
 
 use App\Models\Status;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 
 class EditStatusTest extends TestCase
 {
-/*    public function test_can_edit_status()
+    use RefreshDatabase;
+    public function test_can_edit_status()
     {
         $statusOld = Status::factory()->create();
 
@@ -20,5 +22,5 @@ class EditStatusTest extends TestCase
         $this->assertDatabaseHas('statuses', [
             'name' => 'new name'
         ]);
-    }*/
+    }
 }
