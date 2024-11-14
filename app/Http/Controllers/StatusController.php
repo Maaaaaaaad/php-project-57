@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class StatusController extends Controller
 {
     public function index(Request $request)
@@ -21,7 +22,6 @@ class StatusController extends Controller
         $status = new Status();
         return view('statuses/create-status', compact('status'));
     }
-
     public function store(Request $request)
     {
         $request->validate([
