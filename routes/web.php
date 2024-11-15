@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\Task\TaskController;
+use App\Http\Controllers\Task\TaskFilterController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +40,16 @@ Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
     ->name('status.edit');
 
 
+Route::get('tasks', [TasksController::class, 'index'])
+    ->name('tasks');
+
+
+Route::get('tasks/{id}', [TaskController::class, 'index'])
+    ->name('task');
+Route::get('tasks/create', [TaskController::class, 'create'])
+    ->name('task.create');
+Route::post('tasks/create', [StatusController::class, 'store'])
+    ->name('task.store');
 
 
 require __DIR__.'/auth.php';

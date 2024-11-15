@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class StatusController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $input = $request->input('q');
-
         $statuses = DB::table('statuses')->get();
 
         return view('statuses/show-status', compact('statuses'));

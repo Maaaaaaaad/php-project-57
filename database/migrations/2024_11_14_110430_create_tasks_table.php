@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->text('name')->nullable();
+            $table->text('name');
             $table->text('description');
-            $table->foreignId('statuses_id');
-            $table->foreignId('created_by_id')->constrained(
-                table: 'users', indexName: 'id'
-            );
-            $table->bigInteger('assigned_to_id');
+            $table->unsignedBigInteger('statuses_id');
+            $table->foreign('statuses_id')->references('id')->on('statuses');
+            $table->unsignedBigInteger('created_by_id');
+            $table->foreign('created_by_id')->references('id')->on('users');
+            $table->unsignedBigInteger('assigned_to_id');
+            $table->foreign('assigned_to_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

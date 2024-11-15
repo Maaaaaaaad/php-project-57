@@ -1,20 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Task;
 
+use App\Http\Controllers\Controller;
+use App\Models\Status;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-
-    public function index()
+    public function index($id)
     {
-        //
+        $task = Task::find($id)->get();
+        $status = Status::find($task->pluck('statuses_id'))->pluck('name')->all();
+
+        return view('tasks/show-task', compact('task', 'status'));
     }
 
     public function create()
     {
-        //
     }
 
 
