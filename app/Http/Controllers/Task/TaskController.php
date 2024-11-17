@@ -13,7 +13,6 @@ class TaskController extends Controller
 {
     public function index($id)
     {
-
     }
 
     public function create()
