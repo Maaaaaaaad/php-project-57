@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="grid col-span-full">
-        <h1 class="mb-5">Создать задачу</h1>
-        <form class="w-50" method="POST" action="">
-
+        <h1 class="mb-5 text-5xl">Создать задачу</h1>
+        <form class="w-50" method="POST" action="{{ route('task.store') }}">
+            @csrf
             <div class="flex flex-col">
                 <div>
                     <label for="name">Имя</label>
@@ -20,22 +20,23 @@
                     <label for="status_id">Статус</label>
                 </div>
                 <div>
-                    <select class="rounded border-gray-300 w-1/3" name="status_id" id="status_id"><option value="" selected="selected">
-                        @foreach (@$statuses as $status)
-                            <option value={{$status->id}}>{{ $status->name }}</option>
-                        @endforeach
-                        </select>
+                    <select class="rounded border-gray-300 w-1/3" name="status_id" id="status_id">
+                        <option value="" selected="selected"></option>
+                            @foreach (@$statuses as $status)
+                                <option value={{ $status->id }}>{{ $status->name }}</option>
+                            @endforeach
+                    </select>
                 </div>
                 <div class="mt-2">
-                    <label for="status_id">Исполнитель</label>
+                    <label for="assigned_to_id">Исполнитель</label>
                 </div>
                 <div>
-                    <select class="rounded border-gray-300 w-1/3" name="assigned_to_id" id="assigned_to_id"><option value="" selected="selected"></option>
-                        @foreach (@$users as $user)
-                            <option value={{$user->id}}>{{ $user->name }}</option>
-                        @endforeach
+                    <select class="rounded border-gray-300 w-1/3" name="assigned_to_id" id="assigned_to_id">
+                        <option value="" selected="selected"></option>
+                            @foreach (@$users as $user)
+                                <option value={{ $user->id }}>{{ $user->name }}</option>
+                            @endforeach
                     </select>
-
                 </div>
                 <div class="mt-2">
                     <label for="status_id">Метки</label>
@@ -51,3 +52,6 @@
         </form>
     </div>
 </x-app-layout>
+
+
+

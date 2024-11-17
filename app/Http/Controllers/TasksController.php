@@ -15,10 +15,9 @@ class TasksController extends Controller
         $statuses = Status::all();
         $tasks = Task::paginate(15);
         $users = User::all();
+        $userId = auth()->user()->getAuthIdentifier();
 
-
-
-        return view('tasks/show-tasks', compact('tasks', 'statuses', 'users'));
+        return view('tasks/show-tasks', compact('tasks', 'statuses', 'users', 'userId'));
     }
 
     public function create()
@@ -27,13 +26,28 @@ class TasksController extends Controller
         $statuses = Status::all();
         $users = User::all();
 
-        return view('tasks/edit-task', compact('task', 'statuses', 'users'));
+        return view('tasks/create-task', compact('task', 'statuses', 'users'));
     }
 
 
     public function store(Request $request)
     {
-        //
+        $id = auth()->user()->getAuthIdentifier();
+
+        $request->merge(['created_by_id' => $id]);
+
+        $request->validate([
+            'name' => 'required',
+            'status_id' => 'required',
+            'created_by_id' => 'required',
+        ]);
+
+
+        $task = new Task();
+        $task->fill($request->all());
+        $task->save();
+
+        return redirect()->route('tasks');
     }
 
 
@@ -41,6 +55,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id)->toArray();
         $status = Status::find($task['statuses_id'])->pluck('name')->all();
+
 
         return view('tasks/show-task', compact('task', 'status'));
     }
@@ -60,6 +75,10 @@ class TasksController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $task = Task::find($id);
+        if ($task) {
+            $task->delete();
+        }
+        return redirect()->route('tasks');
     }
 }

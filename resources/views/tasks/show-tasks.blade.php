@@ -51,12 +51,19 @@
                 @foreach (@$tasks as $task)
                     <tr class="border-b border-dashed text-left">
                         <td>{{$task->id}}</td>
-                        <td> {{$status::find($task['statuses_id'])->name}} </td>
+                        <td> {{$status::find($task['status_id'])->name}} </td>
                         <td><a class="text-blue-600 hover:text-blue-900" href="{{route('task', ['id'=>"$task->id"])}}">{{$task->name}}</a></td>
                         <td>{{$user::find($task['created_by_id'])->name}}</td>
                         <td>{{$user::find($task['assigned_to_id'])->name}}</td>
                         <td>{{date('d.m.Y', strtotime($status->created_at))}}</td>
-                       @auth <td><a href="{{--tasks/1/edit--}}" class="text-blue-600 hover:text-blue-900">Изменить</a></td> @endauth
+                        <td>
+                        @auth
+                            @if(@$userId === $task->created_by_id)
+                         <a data-confirm="Вы уверены?" data-method="delete" href="{{ route('task.destroy', ['id'=>"$task->id"]) }}" class="text-red-600 hover:text-red-900">Удалить </a>
+                            @endif
+                        <a href="{{--tasks/1/edit--}}" class="text-blue-600 hover:text-blue-900">Изменить</a>
+                        @endauth
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

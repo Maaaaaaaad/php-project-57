@@ -44,14 +44,18 @@ Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
 Route::get('tasks', [TasksController::class, 'index'])
     ->name('tasks');
 
+Route::get('task/{id}', [TasksController::class, 'destroy'])
+    ->name('task.destroy');
+
+
 Route::get('tasks/create', [TasksController::class, 'create'])
     ->name('task.create');
+Route::post('tasks/create', [TasksController::class, 'store'])
+    ->name('task.store');
+
 
 Route::get('tasks/{id}', [TasksController::class, 'show'])
     ->name('task');
-
-Route::post('tasks/create', [TasksController::class, 'store'])
-    ->name('task.store');
 
 
 require __DIR__.'/auth.php';
