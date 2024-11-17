@@ -5,6 +5,7 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\Task\TaskController;
 use App\Http\Controllers\Task\TaskFilterController;
 use App\Http\Controllers\TasksController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,12 +44,13 @@ Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
 Route::get('tasks', [TasksController::class, 'index'])
     ->name('tasks');
 
-
-Route::get('tasks/{id}', [TaskController::class, 'index'])
-    ->name('task');
-Route::get('tasks/create', [TaskController::class, 'create'])
+Route::get('tasks/create', [TasksController::class, 'create'])
     ->name('task.create');
-Route::post('tasks/create', [StatusController::class, 'store'])
+
+Route::get('tasks/{id}', [TasksController::class, 'show'])
+    ->name('task');
+
+Route::post('tasks/create', [TasksController::class, 'store'])
     ->name('task.store');
 
 

@@ -13,17 +13,8 @@ class TasksController extends Controller
     public function index(Request $request)
     {
         $statuses = Status::all();
-        $tasks = Task::all();
+        $tasks = Task::paginate(15);
         $users = User::all();
-
-        $task = Task::all()->toArray();
-
-/*       foreach ($task as $item)
-       {
-           $statusName = Status::find($item['statuses_id'])->name;
-
-       }*/
-
 
 
 
@@ -32,6 +23,11 @@ class TasksController extends Controller
 
     public function create()
     {
+        $task = new Task();
+        $statuses = Status::all();
+        $users = User::all();
+
+        return view('tasks/edit-task', compact('task', 'statuses', 'users'));
     }
 
 
@@ -41,9 +37,12 @@ class TasksController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $task = Task::find($id)->toArray();
+        $status = Status::find($task['statuses_id'])->pluck('name')->all();
+
+        return view('tasks/show-task', compact('task', 'status'));
     }
 
 

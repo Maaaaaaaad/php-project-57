@@ -13,10 +13,7 @@ class TaskController extends Controller
 {
     public function index($id)
     {
-        $task = Task::find($id)->get();
-        $status = Status::find($task->pluck('statuses_id'))->pluck('name')->all();
 
-        return view('tasks/show-task', compact('task', 'status'));
     }
 
     public function create()
