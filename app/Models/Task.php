@@ -18,4 +18,9 @@ class Task extends Model
         'created_by_id',
         'assigned_to_id'
     ];
+
+    public function lables()
+    {
+        return $this->belongsToMany(Labels::class);
+    }
 }

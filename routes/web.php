@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LabelsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\Task\TaskController;
@@ -61,5 +62,24 @@ Route::get('tasks/{id}/edit', [TasksController::class, 'edit'])
 Route::post('tasks/{id}/edit', [TasksController::class, 'edit'])
     ->name('task.edit');
 
+
+
+Route::get('labels', [LabelsController::class, 'index'])
+    ->name('labels');
+Route::get('labels/create', [LabelsController::class, 'create'])
+    ->name('label.create');
+Route::post('labels/create', [LabelsController::class, 'store'])
+    ->name('label.store');
+
+Route::patch('label/{id}', [LabelsController::class, 'update'])
+    ->name('label.update');
+
+Route::get('label/{id}/edit', [LabelsController::class, 'edit'])
+    ->name('label.edit');
+Route::post('label/{id}/edit', [LabelsController::class, 'edit'])
+    ->name('label.edit');
+
+Route::get('label/{id}', [LabelsController::class, 'destroy'])
+    ->name('label.destroy');
 
 require __DIR__.'/auth.php';

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Labels;
 use App\Models\Status;
 use App\Models\Task;
 use App\Models\User;
@@ -26,8 +27,9 @@ class TasksController extends Controller
         $task = new Task();
         $statuses = Status::all();
         $users = User::all();
+        $labels = Labels::all();
 
-        return view('tasks/create-task', compact('task', 'statuses', 'users'));
+        return view('tasks/create-task', compact('task', 'statuses', 'users', 'labels'));
     }
 
 
@@ -69,8 +71,9 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
         $statuses = Status::all();
         $users = User::all();
+        $labels = Labels::all();
 
-        return view('tasks/edit-task', compact('task', 'statuses', 'users'));
+        return view('tasks/edit-task', compact('task', 'statuses', 'users', 'labels'));
     }
 
 

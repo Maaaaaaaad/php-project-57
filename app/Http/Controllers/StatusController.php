@@ -31,6 +31,8 @@ class StatusController extends Controller
         $status->fill($request->all());
         $status->save();
 
+        flash('Статус успешно создан', 'success');
+
         return redirect()->route('statuses');
     }
     public function show(Status $status)
@@ -53,6 +55,7 @@ class StatusController extends Controller
         $status->fill($data);
         $status->save();
 
+        flash('Статус успешно изменён', 'success');
         return redirect()->route('statuses');
     }
     public function destroy($id)
@@ -63,11 +66,12 @@ class StatusController extends Controller
         if ($status) {
             if (empty($tasks->whereIn('status_id', "$id")->all())) {
                 $status->delete();
+                flash('Статус успешно удалён', 'success');
+                return redirect()->route('statuses');
             }
         }
 
         flash('Не удалось удалить статус', 'danger');
-
         return redirect()->route('statuses');
     }
 }
