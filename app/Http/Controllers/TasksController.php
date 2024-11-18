@@ -15,7 +15,8 @@ class TasksController extends Controller
         $statuses = Status::all();
         $tasks = Task::paginate(15);
         $users = User::all();
-        $userId = auth()->user()->getAuthIdentifier();
+        $userId = $request->user()->id ?? '';
+
 
         return view('tasks/show-tasks', compact('tasks', 'statuses', 'users', 'userId'));
     }
