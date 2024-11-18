@@ -1,4 +1,5 @@
 <x-app-layout>
+    @include('flash::message')
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Задачи</h1>
         <div class="w-full flex items-center">
@@ -61,7 +62,7 @@
                             @if(@$userId === $task->created_by_id)
                          <a data-confirm="Вы уверены?" data-method="delete" href="{{ route('task.destroy', ['id'=>"$task->id"]) }}" class="text-red-600 hover:text-red-900">Удалить </a>
                             @endif
-                        <a href="{{--tasks/1/edit--}}" class="text-blue-600 hover:text-blue-900">Изменить</a>
+                        <a href="{{ route('task.edit', ['id'=>"$task->id"]) }}" class="text-blue-600 hover:text-blue-900">Изменить</a>
                         @endauth
                         </td>
                     </tr>

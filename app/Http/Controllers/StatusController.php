@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,10 +57,17 @@ class StatusController extends Controller
     }
     public function destroy($id)
     {
+        $tasks = Task::all();
         $status = Status::find($id);
+
         if ($status) {
-            $status->delete();
+            if (empty($tasks->whereIn('status_id', "$id")->all())) {
+                $status->delete();
+            }
         }
+
+        flash('Не удалось удалить статус', 'danger');
+
         return redirect()->route('statuses');
     }
 }

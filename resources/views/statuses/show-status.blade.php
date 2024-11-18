@@ -1,4 +1,5 @@
 <x-app-layout>
+    @include('flash::message')
 <div class="grid col-span-full">
     <h1 class="mb-5 text-5xl">Статусы</h1>
         <div>

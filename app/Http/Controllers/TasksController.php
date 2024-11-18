@@ -38,15 +38,17 @@ class TasksController extends Controller
         $request->merge(['created_by_id' => $id]);
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:tasks',
             'status_id' => 'required',
             'created_by_id' => 'required',
         ]);
 
-
         $task = new Task();
         $task->fill($request->all());
         $task->save();
+
+
+        flash('Задача успешно создана', 'success');
 
         return redirect()->route('tasks');
     }
@@ -55,7 +57,7 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id)->toArray();
-        $status = Status::find($task['statuses_id'])->pluck('name')->all();
+        $status = Status::find($task['status_id'])->pluck('name')->all();
 
 
         return view('tasks/show-task', compact('task', 'status'));
@@ -64,13 +66,30 @@ class TasksController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $statuses = Status::all();
+        $users = User::all();
+
+        return view('tasks/edit-task', compact('task', 'statuses', 'users'));
     }
 
 
     public function update(Request $request, string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        $data =  $request->validate([
+            'name' => 'required',
+            'status_id' => 'required',
+            'assigned_to_id' => 'required',
+        ]);
+
+        $task->fill($data);
+        $task->save();
+
+        \flash('Задача успешно изменена', 'success');
+
+        return redirect()->route('tasks');
     }
 
 
@@ -80,6 +99,8 @@ class TasksController extends Controller
         if ($task) {
             $task->delete();
         }
+
+        flash('Задача успешно удалена', 'success');
         return redirect()->route('tasks');
     }
 }

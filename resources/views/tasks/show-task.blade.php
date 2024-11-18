@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid col-span-full">
             <h2 class="mb-5 text-3xl">
-                Просмотр задачи: {{$task['name']}} <a href="">⚙</a>
+                Просмотр задачи: {{$task['name']}} <a href="{{ route('task.edit', ['id'=>"$task[id]"]) }}">⚙</a>
             </h2>
             <p><span class="font-black">Имя:</span> {{$task['name']}}</p>
             <p><span class="font-black">Статус:</span> {{$status[0]}}</p>

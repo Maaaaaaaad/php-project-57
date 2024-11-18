@@ -11,7 +11,9 @@
                 <div class="mt-2">
                     <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name" value="{{$status->name}}">
                     @if ($errors->get('name'))
-                        <div class="text-rose-600"> Статус с таким именем уже существует</div>
+                        @foreach($errors->get('name') as $errors)
+                            <div class="text-rose-600"> {{$errors}}</div>
+                        @endforeach
                     @endif
                 </div>
                 <div class="mt-2">
