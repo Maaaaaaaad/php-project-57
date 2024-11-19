@@ -49,6 +49,9 @@ class TasksController extends Controller
         $task->fill($request->all());
         $task->save();
 
+        foreach ($request->labels as $key => $label) {
+            $task->labels()->attach($label);
+        }
 
         flash('Задача успешно создана', 'success');
 
@@ -58,11 +61,11 @@ class TasksController extends Controller
 
     public function show($id)
     {
-        $task = Task::find($id)->toArray();
+        $task = Task::find($id);
         $status = Status::find($task['status_id'])->pluck('name')->all();
+        $labels = $task->labels->toArray();
 
-
-        return view('tasks/show-task', compact('task', 'status'));
+        return view('tasks/show-task', compact('task', 'status', 'labels'));
     }
 
 
@@ -72,8 +75,12 @@ class TasksController extends Controller
         $statuses = Status::all();
         $users = User::all();
         $labels = Labels::all();
+        $taskLabels = $task->labels;
 
-        return view('tasks/edit-task', compact('task', 'statuses', 'users', 'labels'));
+        $notTurnLabels = $labels->diff($taskLabels);
+
+
+        return view('tasks/edit-task', compact('task', 'statuses', 'users', 'taskLabels', 'notTurnLabels'));
     }
 
 
@@ -87,10 +94,13 @@ class TasksController extends Controller
             'assigned_to_id' => 'required',
         ]);
 
+        $task->labels()->sync($request->labels);
+
+
         $task->fill($data);
         $task->save();
 
-        \flash('Задача успешно изменена', 'success');
+        flash('Задача успешно изменена', 'success');
 
         return redirect()->route('tasks');
     }
@@ -100,6 +110,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
         if ($task) {
+            $task->labels()->detach();
             $task->delete();
         }
 

@@ -42,10 +42,11 @@
                     <label for="labels">Метки</label>
                 </div>
                 <div>
-                    <select class="rounded border-gray-300 w-1/3 h-32" name="labels" id="labels" multiple="">
+                    <select class="rounded border-gray-300 w-1/3 h-32" name="labels[]" id="labels[]" multiple>
                         @foreach (@$labels as $label)
                             <option value={{ $label->id }}>{{ $label->name }}</option>
-                    @endforeach
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mt-2">
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Создать</button>

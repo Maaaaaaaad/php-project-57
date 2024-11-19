@@ -19,7 +19,7 @@ class Task extends Model
         'assigned_to_id'
     ];
 
-    public function lables()
+    public function labels()
     {
         return $this->belongsToMany(Labels::class);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Labels;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -60,12 +61,15 @@ class LabelsController extends Controller
     }
     public function destroy($id)
     {
-        $lable = Labels::find($id);
-        if ($task) {
-            $task->delete();
+        $label = Labels::find($id);
+
+        if (!$label->isTaskMark()) {
+            $label->delete();
+            flash('Метка успешно удалена', 'success');
+            return redirect()->route('labels');
         }
 
-        flash('Метка успешно удалена', 'success');
-        return redirect()->route('tasks');
+        flash('Не удалось удалить метку', 'danger');
+        return redirect()->route('labels');
     }
 }
