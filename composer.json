@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.9",
         "nyholm/psr7": "^1.8",
         "railsware/mailtrap-php": "^2.0",
+        "spatie/laravel-query-builder": "^6.2",
         "symfony/http-client": "v7.2.0-RC1",
         "vlucas/phpdotenv": "^5.6"
     },
