@@ -49,8 +49,10 @@ class TasksController extends Controller
         $task->fill($request->all());
         $task->save();
 
-        foreach ($request->labels as $key => $label) {
-            $task->labels()->attach($label);
+        if ($request->labels) {
+            foreach ($request->labels as $key => $label) {
+                $task->labels()->attach($label);
+            }
         }
 
         flash('Задача успешно создана', 'success');
