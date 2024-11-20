@@ -7,19 +7,31 @@ use App\Models\Status;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Collection;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class TasksController extends Controller
 {
     public function index(Request $request)
     {
+        $input = $request->query->all();
+        $input = $input['filter'];
+
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters([
+                AllowedFilter::exact('status_id'),
+                AllowedFilter::exact('created_by_id'),
+                AllowedFilter::exact('assigned_to_id'),
+            ])
+            ->paginate(15)
+            ->appends(request()->query());
+
         $statuses = Status::all();
-        $tasks = Task::paginate(15);
         $users = User::all();
         $userId = $request->user()->id ?? '';
 
-
-        return view('tasks/show-tasks', compact('tasks', 'statuses', 'users', 'userId'));
+        return view('tasks/show-tasks', compact('statuses', 'users', 'userId', 'tasks', 'input'));
     }
 
     public function create()

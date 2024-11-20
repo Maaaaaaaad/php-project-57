@@ -7,21 +7,21 @@
                 <form method="GET" action="{{ route('tasks') }}">
                     <div class="flex">
                         <select class="rounded border-gray-300" name="filter[status_id]" id="filter[status_id]">
-                            <option value="" selected="selected">Статус</option>
+                            <option value="" selected>Статус</option>
                             @foreach (@$statuses as $status)
-                                <option value={{$status->id}}>{{ $status->name }}</option>
+                                <option value="{{ $status->id }}" {{ (old('status_id', $input['status_id']) == $status->id) ? 'selected' : '' }}> {{ $status->name }} </option>
                             @endforeach
                         </select>
                         <select class="rounded border-gray-300" name="filter[created_by_id]" id="filter[created_by_id]">
-                            <option value="" selected="selected">Автор</option>
+                            <option value="" selected>Автор</option>
                             @foreach (@$users as $user)
-                                <option value={{$user->id}}>{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" {{ (old('created_by_id', $input['created_by_id']) == $user->id) ? 'selected' : '' }}> {{ $user->name }} </option>
                             @endforeach
                         </select>
                         <select class="rounded border-gray-300" name="filter[assigned_to_id]" id="filter[assigned_to_id]">
-                            <option value="" selected="selected">Исполнитель</option>
+                            <option value="" selected>Исполнитель</option>
                             @foreach (@$users as $user)
-                                <option value={{$user->id}}>{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" {{ (old('assigned_to_id', $input['assigned_to_id']) == $user->id) ? 'selected' : '' }}> {{ $user->name }} </option>
                             @endforeach
                         </select>
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" type="submit">Применить</button>

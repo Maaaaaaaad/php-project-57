@@ -65,7 +65,7 @@ class StatusController extends Controller
                 $status->delete();
                 flash('Статус успешно удалён', 'success');
                 return redirect()->route('statuses');
-            }
+        }
 
         flash('Не удалось удалить статус', 'danger');
         return redirect()->route('statuses');
