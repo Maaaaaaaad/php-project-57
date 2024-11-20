@@ -8,8 +8,9 @@ setup:
 	composer install
 	cp -n .env.example .env
 	php artisan key:gen --ansi
+	rm -f database/database.sqlite
 	touch database/database.sqlite
-	php artisan migrate:fresh --seed --seeder=DatabaseSeeder
+	php artisan migrate:seed --seed --seeder=DatabaseSeeder
 	npm install
 	npm ci
 	npm run build
