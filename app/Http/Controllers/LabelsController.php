@@ -11,7 +11,7 @@ class LabelsController extends Controller
 {
     public function index()
     {
-        $labels = DB::table('labels')->get();
+        $labels = Labels::all();
         return view('labels/show-labels', compact('labels'));
     }
 
@@ -26,16 +26,13 @@ class LabelsController extends Controller
             'name' => 'required|unique:labels',
         ]);
 
-        $status = new Labels();
-        $status->fill($request->all());
-        $status->save();
+        $label = new Labels();
+        $label->fill($request->all());
+        $label->save();
 
         flash('Метка успешно создана', 'success');
 
         return redirect()->route('labels');
-    }
-    public function show()
-    {
     }
     public function edit($id)
     {
@@ -63,7 +60,7 @@ class LabelsController extends Controller
     {
         $label = Labels::find($id);
 
-        if (!$label->isTaskMark()) {
+        if (!$label->tasks()->exists()) {
             $label->delete();
             flash('Метка успешно удалена', 'success');
             return redirect()->route('labels');

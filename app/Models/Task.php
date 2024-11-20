@@ -23,4 +23,8 @@ class Task extends Model
     {
         return $this->belongsToMany(Labels::class);
     }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

@@ -26,9 +26,4 @@ class Labels extends Model
     {
         return $this->belongsToMany(Task::class);
     }
-
-    public function isTaskMark()
-    {
-        return $this->tasks()->exists();
-    }
 }

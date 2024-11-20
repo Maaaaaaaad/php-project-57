@@ -11,8 +11,7 @@ class StatusController extends Controller
 {
     public function index()
     {
-        $statuses = DB::table('statuses')->get();
-
+        $statuses = Status::all();
         return view('statuses/show-status', compact('statuses'));
     }
 
@@ -37,8 +36,7 @@ class StatusController extends Controller
     }
     public function show(Status $status)
     {
-        $newStatus = new StatusController();
-        return view('statuses/show-status', compact('status', 'newStatus'));
+        return view('statuses/show-status', compact('status'));
     }
     public function edit($id)
     {
@@ -60,16 +58,14 @@ class StatusController extends Controller
     }
     public function destroy($id)
     {
-        $tasks = Task::all();
+        $tasks = Task::where('status_id', $id)->exists();
         $status = Status::find($id);
 
-        if ($status) {
-            if (empty($tasks->whereIn('status_id', "$id")->all())) {
+        if (!$tasks) {
                 $status->delete();
                 flash('Статус успешно удалён', 'success');
                 return redirect()->route('statuses');
             }
-        }
 
         flash('Не удалось удалить статус', 'danger');
         return redirect()->route('statuses');

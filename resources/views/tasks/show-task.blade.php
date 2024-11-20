@@ -4,7 +4,7 @@
                 Просмотр задачи: {{$task->name}} <a href="{{ route('task.edit', ['id'=>"$task[id]"]) }}">⚙</a>
             </h2>
             <p><span class="font-black">Имя:</span> {{$task->name}}</p>
-            <p><span class="font-black">Статус:</span> {{$status[0]}}</p>
+            <p><span class="font-black">Статус:</span> {{$status}}</p>
             <p><span class="font-black">Описание:</span> {{$task->description}}</p>
             @if(!empty(@$labels))
                 <p><span class="font-black">Метки:</span></p>
