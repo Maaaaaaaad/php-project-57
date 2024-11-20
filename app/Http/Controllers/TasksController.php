@@ -15,8 +15,15 @@ class TasksController extends Controller
 {
     public function index(Request $request)
     {
-        $input = $request->query->all();
-        $input = $input['filter'];
+        $defaultFilter = [
+            "status_id" => '',
+            "created_by_id" => '',
+            "assigned_to_id" => ''
+        ];
+
+        $input = $request->query('filter', []);
+        $input = array_merge($defaultFilter, $input);
+
 
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
