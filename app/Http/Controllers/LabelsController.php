@@ -49,7 +49,7 @@ class LabelsController extends Controller
             'name' => 'required|unique:labels',
         ]);
 
-        $label->fill($data);
+        $label->fill($request->all());
         $label->save();
 
         flash('Метка успешно изменена', 'success');

@@ -49,7 +49,7 @@ class StatusController extends Controller
             'name' => 'required|unique:statuses'
         ]);
 
-        $status->fill($data);
+        $status->fill($request->all());
         $status->save();
 
         flash('Статус успешно изменён', 'success');
@@ -61,9 +61,8 @@ class StatusController extends Controller
         $status = Statuses::find($id);
 
         if (!$tasks) {
-                $status->delete();
-
                 flash('Статус успешно удалён', 'success');
+                $status->delete();
                 return redirect()->route('statuses');
         }
 
