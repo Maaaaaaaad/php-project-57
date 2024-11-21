@@ -31,19 +31,22 @@ Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
 
 Route::get('tasks', [TasksController::class, 'index'])
     ->name('tasks');
-Route::post('tasks', [TasksController::class, 'store'])
-    ->name('task.store');
+
 Route::get('tasks/create', [TasksController::class, 'create'])
     ->name('task.create');
+Route::post('tasks', [TasksController::class, 'store'])
+    ->name('task.store');
 
+
+
+
+Route::get('tasks/{id}', [TasksController::class, 'show'])
+    ->name('task');
 
 Route::get('tasks/{id}', [TasksController::class, 'destroy'])
     ->name('task.destroy');
 Route::patch('tasks/{id}', [TasksController::class, 'update'])
     ->name('task.update');
-
-Route::get('tasks/{id}', [TasksController::class, 'show'])
-    ->name('task');
 
 Route::get('tasks/{id}/edit', [TasksController::class, 'edit'])
     ->name('task.edit');

@@ -53,7 +53,7 @@
                     <tr class="border-b border-dashed text-left">
                         <td>{{$task->id}}</td>
                         <td> {{$status::find($task['status_id'])->name}} </td>
-                        <td><a class="text-blue-600 hover:text-blue-900" href="{{route('task', ['id'=>"$task->id"])}}">{{$task->name}}</a></td>
+                        <td><a class="text-blue-600 hover:text-blue-900" href="{{route('tasks', ['id'=>"$task->id"])}}">{{$task->name}}</a></td>
                         <td>{{$user::find($task['created_by_id'])->name}}</td>
                         <td>{{$user::find($task['assigned_to_id'])->name}}</td>
                         <td>{{date('d.m.Y', strtotime($status->created_at))}}</td>
