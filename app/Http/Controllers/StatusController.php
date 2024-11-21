@@ -64,11 +64,12 @@ class StatusController extends Controller
 
         if (!$tasks) {
                 flash('Статус успешно удалён', 'alert');
+
                 $status->delete();
                 return redirect()->route('statuses');
         }
 
-        flash('Не удалось удалить статус', 'danger');
+        flash('Не удалось удалить статус', 'success');
         return redirect()->route('statuses');
     }
 }

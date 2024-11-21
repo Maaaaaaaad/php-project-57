@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Statuses extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

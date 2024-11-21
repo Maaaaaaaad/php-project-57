@@ -10,6 +10,11 @@
                 </div>
                 <div class="mt-2">
                     <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name">
+                    @if ($errors->get('name'))
+                        @foreach($errors->get('name') as $errors)
+                            <div class="text-rose-600"> {{$errors}}</div>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="mt-2">
                     <label for="description">Описание</label>
