@@ -58,12 +58,12 @@ Route::get('labels/create', [LabelsController::class, 'create'])
     ->name('label.create');
 
 
-Route::patch('labels/{id}', [LabelsController::class, 'update'])
+Route::patch('label/{id}', [LabelsController::class, 'update'])
     ->name('label.update');
 
 Route::get('labels/{id}/edit', [LabelsController::class, 'edit'])
     ->name('label.edit');
-Route::post('label/{id}/edit', [LabelsController::class, 'edit'])
+Route::post('labels/{id}/edit', [LabelsController::class, 'edit'])
     ->name('label.edit');
 
 Route::get('label/{id}', [LabelsController::class, 'destroy'])
