@@ -62,6 +62,7 @@ class StatusController extends Controller
 
         if (!$tasks) {
                 $status->delete();
+
                 flash('Статус успешно удалён', 'success');
                 return redirect()->route('statuses');
         }
