@@ -58,7 +58,7 @@ Route::get('labels/create', [LabelsController::class, 'create'])
     ->name('label.create');
 
 
-Route::patch('label/{id}', [LabelsController::class, 'update'])
+Route::patch('labels/{id}', [LabelsController::class, 'update'])
     ->name('label.update');
 
 Route::get('labels/{id}/edit', [LabelsController::class, 'edit'])
@@ -66,7 +66,7 @@ Route::get('labels/{id}/edit', [LabelsController::class, 'edit'])
 Route::post('labels/{id}/edit', [LabelsController::class, 'edit'])
     ->name('label.edit');
 
-Route::get('label/{id}', [LabelsController::class, 'destroy'])
+Route::get('labels/{id}', [LabelsController::class, 'destroy'])
     ->name('label.destroy');
 
 require __DIR__.'/auth.php';
