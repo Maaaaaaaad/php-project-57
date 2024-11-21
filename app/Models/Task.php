@@ -21,10 +21,10 @@ class Task extends Model
 
     public function labels()
     {
-        return $this->belongsToMany(Labels::class);
+        return $this->belongsToMany(TaskLabels::class);
     }
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(TaskStatuses::class);
     }
 }

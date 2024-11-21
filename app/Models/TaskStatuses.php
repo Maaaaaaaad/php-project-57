@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Notifications\Notifiable;
 
-class Labels extends Model
+class TaskStatuses extends Model
 {
     use HasFactory;
-
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,13 +17,11 @@ class Labels extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description'
+        'name'
     ];
-
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class);
+        return $this->hasMany(Task::class);
     }
 }

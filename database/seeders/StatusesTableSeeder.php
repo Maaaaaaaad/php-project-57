@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Status;
+use App\Models\TaskStatuses;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -10,16 +11,16 @@ class StatusesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        Status::factory()->create([
+        TaskStatuses::factory()->create([
             'name' => 'новая'
         ]);
-        Status::factory()->create([
+        TaskStatuses::factory()->create([
             'name' => 'завершена'
         ]);
-        Status::factory()->create([
+        TaskStatuses::factory()->create([
             'name' => 'выполняется'
         ]);
-        Status::factory()->create([
+        TaskStatuses::factory()->create([
             'name' => 'в архиве'
         ]);
     }

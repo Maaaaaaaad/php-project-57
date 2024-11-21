@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('name');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('status_id')->references('id')->on('task_statuses');
             $table->unsignedBigInteger('created_by_id');
             $table->foreign('created_by_id')->references('id')->on('users');
             $table->unsignedBigInteger('assigned_to_id')->nullable();
