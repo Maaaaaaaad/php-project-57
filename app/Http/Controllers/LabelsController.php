@@ -47,9 +47,10 @@ class LabelsController extends Controller
 
         $data =  $request->validate([
             'name' => 'required|unique:labels',
+            'description' => ''
         ]);
 
-        $label->fill($request->all());
+        $label->fill($data);
         $label->save();
 
         flash('Метка успешно изменена', 'success');
@@ -61,8 +62,8 @@ class LabelsController extends Controller
         $label = Labels::find($id);
 
         if (!$label->tasks()->exists()) {
+            flash('Метка успешно удалена', 'alert');
             $label->delete();
-            flash('Метка успешно удалена', 'success');
             return redirect()->route('labels');
         }
 

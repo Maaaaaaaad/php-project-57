@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Statuses;
 use App\Models\Task;
+use http\Exception;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -61,7 +63,7 @@ class StatusController extends Controller
         $status = Statuses::find($id);
 
         if (!$tasks) {
-                flash('Статус успешно удалён', 'success');
+                flash('Статус успешно удалён', 'alert');
                 $status->delete();
                 return redirect()->route('statuses');
         }
