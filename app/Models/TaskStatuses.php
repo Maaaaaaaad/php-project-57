@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 class TaskStatuses extends Model
 {
     use HasFactory;
-    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TaskStatuses;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class StatusController extends Controller
 {
@@ -23,7 +23,7 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:statuses',
+            'name' => 'required|unique:task_statuses',
         ]);
 
         $status = new TaskStatuses();
