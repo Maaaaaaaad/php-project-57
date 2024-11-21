@@ -24,13 +24,17 @@ class LabelsController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:labels',
-        ]);
+        ],
+            [
+                'unique' => 'Метка с таким именем уже существует'
+            ]);
+
 
         $label = new Labels();
         $label->fill($request->all());
         $label->save();
 
-        flash('Метка успешно создана', 'success');
+        flash(__('messages.labelWasCreated'), 'success');
 
         return redirect()->route('labels');
     }
@@ -53,8 +57,7 @@ class LabelsController extends Controller
         $label->fill($data);
         $label->save();
 
-        flash('Метка успешно изменена', 'success');
-
+        flash(__('messages.labelWasUpdated'), 'success');
         return redirect()->route('labels');
     }
     public function destroy($id)
@@ -62,12 +65,12 @@ class LabelsController extends Controller
         $label = Labels::find($id);
 
         if (!$label->tasks()->exists()) {
-            flash('Метка успешно удалена', 'alert');
+            flash(__('messages.labelWasDeleted'), 'danger');
             $label->delete();
             return redirect()->route('labels');
         }
 
-        flash('Не удалось удалить метку', 'danger');
+        flash(__('messages.labelWasNotDeleted'), 'success');
         return redirect()->route('labels');
     }
 }

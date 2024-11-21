@@ -31,8 +31,7 @@ class StatusController extends Controller
         $status->fill($request->all());
         $status->save();
 
-        flash('Статус успешно создан', 'success');
-
+        flash(__('messages.StatusWasCreated'), 'success');
         return redirect()->route('statuses');
     }
     public function show(Statuses $status)
@@ -49,12 +48,15 @@ class StatusController extends Controller
         $status = Statuses::findOrFail($id);
         $data = $request->validate([
             'name' => 'required|unique:statuses'
-        ]);
+        ],
+            [
+                'unique' => 'Статус с таким именем уже существует'
+            ]);
 
         $status->fill($request->all());
         $status->save();
 
-        flash('Статус успешно изменён', 'success');
+        flash(__('messages.StatusWasUpdated'), 'success');
         return redirect()->route('statuses');
     }
     public function destroy($id)
@@ -63,13 +65,12 @@ class StatusController extends Controller
         $status = Statuses::find($id);
 
         if (!$tasks) {
-                flash('Статус успешно удалён', 'alert');
-
+                flash(__('messages.StatusWasDeleted'), 'danger');
                 $status->delete();
                 return redirect()->route('statuses');
         }
 
-        flash('Не удалось удалить статус', 'success');
+        flash(__('messages.StatusWasNotDeleted'), 'success');
         return redirect()->route('statuses');
     }
 }
