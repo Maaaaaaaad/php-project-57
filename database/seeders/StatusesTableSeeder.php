@@ -11,16 +11,16 @@ class StatusesTableSeeder extends Seeder
     public function run(): void
     {
         Status::factory()->create([
-            'name' => 'новый'
+            'name' => 'новая'
         ]);
         Status::factory()->create([
-            'name' => 'в работе'
+            'name' => 'завершена'
         ]);
         Status::factory()->create([
-            'name' => 'на тестировании'
+            'name' => 'выполняется'
         ]);
         Status::factory()->create([
-            'name' => 'завершен'
+            'name' => 'в архиве'
         ]);
     }
 }
