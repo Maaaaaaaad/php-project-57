@@ -44,4 +44,20 @@ class AddStatusTest extends TestCase
 
         $response->assertSessionHasErrors();
     }
+
+    public function testIndex(): void
+    {
+        $this->assertDatabaseCount(Status::class, 0);
+
+        $statuses = Status::factory()
+            ->count(5)
+            ->create()
+            ->pluck('name')
+            ->all();
+
+        $response = $this->get(route('task_statuses.index'));
+        $response->assertStatus(200);
+        $response->assertSee($statuses);
+        $this->assertDatabaseCount(Status::class, 5);
+    }
 }
