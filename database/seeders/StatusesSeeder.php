@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Statuses;
 use Illuminate\Database\Seeder;
 
-class StatusesTableSeeder extends Seeder
+class StatusesSeeder extends Seeder
 {
     public function run(): void
     {
