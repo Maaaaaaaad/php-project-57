@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TaskStatuses;
+use App\Models\Statuses;
 use App\Models\Task;
 use Illuminate\Http\Request;
-
 
 class StatusController extends Controller
 {
     public function index()
     {
-        $statuses = TaskStatuses::all();
+        $statuses = Statuses::all();
         return view('statuses/show-status', compact('statuses'));
     }
 
     public function create()
     {
-        $status = new TaskStatuses();
+        $status = new Statuses();
         return view('statuses/create-status', compact('status'));
     }
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:task_statuses',
+            'name' => 'required|unique:statuses',
         ]);
 
-        $status = new TaskStatuses();
+        $status = new Statuses();
         $status->fill($request->all());
         $status->save();
 
@@ -34,20 +33,20 @@ class StatusController extends Controller
 
         return redirect()->route('statuses');
     }
-    public function show(TaskStatuses $status)
+    public function show(Statuses $status)
     {
         return view('statuses/show-status', compact('status'));
     }
     public function edit($id)
     {
-        $status = TaskStatuses::findOrFail($id);
+        $status = Statuses::findOrFail($id);
         return view('statuses/edit-status', compact('status'));
     }
     public function update(Request $request, $id)
     {
-        $status = TaskStatuses::findOrFail($id);
+        $status = Statuses::findOrFail($id);
         $data = $request->validate([
-            'name' => 'required|unique:task_statuses'
+            'name' => 'required|unique:statuses'
         ]);
 
         $status->fill($data);
@@ -59,7 +58,7 @@ class StatusController extends Controller
     public function destroy($id)
     {
         $tasks = Task::where('status_id', $id)->exists();
-        $status = TaskStatuses::find($id);
+        $status = Statuses::find($id);
 
         if (!$tasks) {
                 $status->delete();

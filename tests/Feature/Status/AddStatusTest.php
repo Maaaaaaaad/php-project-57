@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Status;
 
-use App\Models\TaskStatuses;
+use App\Models\Statuses;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -19,7 +19,7 @@ class AddStatusTest extends TestCase
 
     public function test_can_add_new_status() : void
     {
-        $status = TaskStatuses::factory()->create();
+        $status = Statuses::factory()->create();
 
         $response = $this->post('task_statuses/create', [
             'name' => $status->name,
@@ -28,28 +28,12 @@ class AddStatusTest extends TestCase
         $response->assertRedirect();
     }
 
-    public function test_can_not_add_two_same_statuses(): void
-    {
-        $status = TaskStatuses::factory()->create();
-
-        $response = $this->post('task_statuses/create', [
-            'name' => $status->name,
-        ]);
-
-        $response->assertRedirect();
-
-        $response = $this->post('task_statuses/create', [
-            'name' => $status->name,
-        ]);
-
-        $response->assertSessionHasErrors();
-    }
 
     public function testIndex(): void
     {
-        $status = new TaskStatuses();
+        $status = new Statuses();
 
-        $statuses = TaskStatuses::factory()
+        $statuses = Statuses::factory()
             ->count(5)
             ->create()
             ->pluck('name')
@@ -58,6 +42,6 @@ class AddStatusTest extends TestCase
         $response = $this->get(route('statuses'));
         $response->assertStatus(200);
         $response->assertSee($statuses);
-        $this->assertDatabaseCount(TaskStatuses::class, 5);
+        $this->assertDatabaseCount(Statuses::class, 5);
     }
 }

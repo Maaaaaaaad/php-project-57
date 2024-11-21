@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TaskLabels;
+use App\Models\Labels;
 use App\Models\Task;
-use App\Models\TaskStatuses;
+use App\Models\Statuses;
 use App\Models\User;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Collection;
@@ -34,7 +34,7 @@ class TasksController extends Controller
             ->paginate(15)
             ->appends(request()->query());
 
-        $statuses = TaskStatuses::all();
+        $statuses = Statuses::all();
         $users = User::all();
         $userId = $request->user()->id ?? '';
 
@@ -44,9 +44,9 @@ class TasksController extends Controller
     public function create()
     {
         $task = new Task();
-        $statuses = TaskStatuses::all();
+        $statuses = Statuses::all();
         $users = User::all();
-        $labels = TaskLabels::all();
+        $labels = Labels::all();
 
         return view('tasks/create-task', compact('task', 'statuses', 'users', 'labels'));
     }
@@ -88,9 +88,9 @@ class TasksController extends Controller
     public function edit(string $id)
     {
         $task = Task::findOrFail($id);
-        $statuses = TaskStatuses::all();
+        $statuses = Statuses::all();
         $users = User::all();
-        $labels = TaskLabels::all();
+        $labels = Labels::all();
         $taskLabels = $task->labels;
 
         $notTurnLabels = $labels->diff($taskLabels);

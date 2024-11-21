@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TaskLabels;
+use App\Models\Labels;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,13 +11,13 @@ class LabelsController extends Controller
 {
     public function index()
     {
-        $labels = TaskLabels::all();
+        $labels = Labels::all();
         return view('labels/show-labels', compact('labels'));
     }
 
     public function create()
     {
-        $label = new TaskLabels();
+        $label = new Labels();
         return view('labels/create-label', compact('label'));
     }
     public function store(Request $request)
@@ -26,7 +26,7 @@ class LabelsController extends Controller
             'name' => 'required|unique:labels',
         ]);
 
-        $label = new TaskLabels();
+        $label = new Labels();
         $label->fill($request->all());
         $label->save();
 
@@ -36,17 +36,17 @@ class LabelsController extends Controller
     }
     public function edit($id)
     {
-        $label = TaskLabels::findOrFail($id);
+        $label = Labels::findOrFail($id);
 
 
         return view('labels/edit-label', compact('label'));
     }
     public function update(Request $request, $id)
     {
-        $label = TaskLabels::findOrFail($id);
+        $label = Labels::findOrFail($id);
 
         $data =  $request->validate([
-            'name' => 'required|unique:task_labels',
+            'name' => 'required|unique:labels',
         ]);
 
         $label->fill($data);
@@ -58,7 +58,7 @@ class LabelsController extends Controller
     }
     public function destroy($id)
     {
-        $label = TaskLabels::find($id);
+        $label = Labels::find($id);
 
         if (!$label->tasks()->exists()) {
             $label->delete();

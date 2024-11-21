@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\TaskLabels;
+use App\Models\Labels;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,19 +13,19 @@ class LabelsSeeder extends Seeder
      */
     public function run(): void
     {
-        TaskLabels::factory()->create([
+        Labels::factory()->create([
             'name' => 'ошибка',
             'description'=> 'Какая-то ошибка в коде или проблема с функциональностью'
         ]);
-        TaskLabels::factory()->create([
+        Labels::factory()->create([
             'name' => 'документация',
             'description' => 'Задача которая касается документации'
         ]);
-        TaskLabels::factory()->create([
+        Labels::factory()->create([
             'name' => 'дубликат',
             'description' => 'Повтор другой задачи'
         ]);
-        TaskLabels::factory()->create([
+        Labels::factory()->create([
             'name' => 'доработка',
             'description' => 'Новая фича, которую нужно запилить'
         ]);
