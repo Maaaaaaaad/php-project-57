@@ -52,10 +52,11 @@ Route::post('tasks/{id}/edit', [TasksController::class, 'edit'])
 
 Route::get('labels', [LabelsController::class, 'index'])
     ->name('labels');
+Route::post('labels', [LabelsController::class, 'store'])
+    ->name('label.store');
 Route::get('labels/create', [LabelsController::class, 'create'])
     ->name('label.create');
-Route::post('labels/create', [LabelsController::class, 'store'])
-    ->name('label.store');
+
 
 Route::patch('label/{id}', [LabelsController::class, 'update'])
     ->name('label.update');
