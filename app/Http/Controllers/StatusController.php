@@ -31,7 +31,7 @@ class StatusController extends Controller
         $status->fill($request->all());
         $status->save();
 
-        flash(__('messages.StatusWasCreated'), 'success');
+        flash(__('messages.statusWasCreated'), 'success');
         return redirect()->route('statuses');
     }
     public function show(Statuses $status)
