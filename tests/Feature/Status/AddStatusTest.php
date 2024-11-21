@@ -55,7 +55,7 @@ class AddStatusTest extends TestCase
             ->pluck('name')
             ->all();
 
-        $response = $this->get(route('task_statuses.index'));
+        $response = $this->get(route('statuses'));
         $response->assertStatus(200);
         $response->assertSee($statuses);
         $this->assertDatabaseCount(Status::class, 5);
