@@ -52,7 +52,10 @@ class LabelsController extends Controller
         $data =  $request->validate([
             'name' => 'required|unique:labels',
             'description' => ''
-        ]);
+        ],
+            [
+                'unique' => 'Метка с таким именем уже существует'
+            ]);
 
         $label->fill($data);
         $label->save();

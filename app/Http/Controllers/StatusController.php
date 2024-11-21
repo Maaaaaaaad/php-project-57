@@ -25,7 +25,10 @@ class StatusController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:statuses',
-        ]);
+        ],
+            [
+                'unique' => 'Статус с таким именем уже существует'
+            ]);
 
         $status = new Statuses();
         $status->fill($request->all());
