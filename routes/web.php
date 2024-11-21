@@ -1,12 +1,8 @@
 <?php
 
 use App\Http\Controllers\LabelsController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
-use App\Http\Controllers\Task\TaskController;
-use App\Http\Controllers\Task\TaskFilterController;
 use App\Http\Controllers\TasksController;
-use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,10 +12,11 @@ Route::get('/', function () {
 
 Route::get('task_statuses', [StatusController::class, 'index'])
     ->name('statuses');
+Route::post('task_statuses', [StatusController::class, 'store'])
+    ->name('status.store');
 Route::get('task_statuses/create', [StatusController::class, 'create'])
     ->name('status.create');
-Route::post('task_statuses/create', [StatusController::class, 'store'])
-    ->name('status.store');
+
 
 Route::get('task_statuses/{id}', [StatusController::class, 'destroy'])
     ->name('status.destroy');

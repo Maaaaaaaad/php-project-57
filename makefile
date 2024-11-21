@@ -10,6 +10,7 @@ setup:
 	php artisan key:gen --ansi
 	rm -f database/database.sqlite
 	touch database/database.sqlite
+	php artisan migrate:fresh
 	php artisan db:seed
 	npm install
 	npm ci
