@@ -54,7 +54,7 @@ class Task extends Model
 
     public function labels()
     {
-        return $this->belongsToMany(Labels::class, );
+        return $this->belongsToMany(Labels::class);
     }
     public function status()
     {
@@ -70,6 +70,4 @@ class Task extends Model
     {
         return $this->labels->toArray();
     }
-
-
 }
