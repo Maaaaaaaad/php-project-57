@@ -23,12 +23,14 @@ class StatusController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required|unique:statuses',
-        ],
+            ],
             [
                 'unique' => 'Статус с таким именем уже существует'
-            ]);
+            ]
+        );
 
         $status = new Statuses();
         $status->fill($request->all());
@@ -49,12 +51,14 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
         $status = Statuses::findOrFail($id);
-        $data = $request->validate([
+        $data = $request->validate(
+            [
             'name' => 'required|unique:statuses'
-        ],
+            ],
             [
                 'unique' => 'Статус с таким именем уже существует'
-            ]);
+            ]
+        );
 
         $status->fill($request->all());
         $status->save();

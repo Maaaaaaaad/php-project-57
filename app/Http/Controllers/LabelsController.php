@@ -22,12 +22,14 @@ class LabelsController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
             'name' => 'required|unique:labels',
-        ],
+            ],
             [
                 'unique' => 'Метка с таким именем уже существует'
-            ]);
+            ]
+        );
 
 
         $label = new Labels();
@@ -49,13 +51,15 @@ class LabelsController extends Controller
     {
         $label = Labels::findOrFail($id);
 
-        $data =  $request->validate([
+        $data =  $request->validate(
+            [
             'name' => 'required|unique:labels',
             'description' => ''
-        ],
+            ],
             [
                 'unique' => 'Метка с таким именем уже существует'
-            ]);
+            ]
+        );
 
         $label->fill($data);
         $label->save();
