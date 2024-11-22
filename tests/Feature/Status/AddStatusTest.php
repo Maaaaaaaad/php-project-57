@@ -10,14 +10,15 @@ use Tests\TestCase;
 class AddStatusTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_status_screen_can_be_rendered(): void
+
+    public function testStatusScreenCanBeRendered(): void
     {
         $response = $this->get('/task_statuses');
 
         $response->assertStatus(200);
     }
 
-    public function test_can_add_new_status() : void
+    public function testCanAddNewStatus() : void
     {
         $status = Statuses::factory()->create();
 

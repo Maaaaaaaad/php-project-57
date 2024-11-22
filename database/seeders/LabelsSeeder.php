@@ -15,7 +15,7 @@ class LabelsSeeder extends Seeder
     {
         Labels::factory()->create([
             'name' => 'ошибка',
-            'description'=> 'Какая-то ошибка в коде или проблема с функциональностью'
+            'description' => 'Какая-то ошибка в коде или проблема с функциональностью'
         ]);
         Labels::factory()->create([
             'name' => 'документация',

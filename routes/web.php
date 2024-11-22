@@ -5,7 +5,6 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -53,4 +52,4 @@ Route::patch('labels/{id}', [LabelsController::class, 'update'])
 Route::get('labels/{id}/delete', [LabelsController::class, 'destroy'])
     ->name('labels.destroy');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
