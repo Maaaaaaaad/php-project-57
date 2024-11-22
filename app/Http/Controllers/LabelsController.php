@@ -40,14 +40,14 @@ class LabelsController extends Controller
 
         return redirect()->route('labels.index');
     }
-    public function edit($id)
+    public function edit(string $id)
     {
         $label = Labels::findOrFail($id);
 
 
         return view('labels/edit-label', compact('label'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $label = Labels::findOrFail($id);
 
@@ -67,7 +67,7 @@ class LabelsController extends Controller
         flash(__('messages.labelWasUpdated'), 'success');
         return redirect()->route('labels.index');
     }
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $label = Labels::find($id);
 

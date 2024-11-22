@@ -75,7 +75,7 @@ class TasksController extends Controller
         flash(__('messages.taskWasCreated'), 'success');
         return redirect()->route('tasks.index');
     }
-    public function show($id)
+    public function show(string $id)
     {
         $task = Task::find($id);
         $status = $task->status->name;

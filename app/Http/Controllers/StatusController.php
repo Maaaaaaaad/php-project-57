@@ -43,12 +43,12 @@ class StatusController extends Controller
     {
         return view('statuses/show-status', compact('status'));
     }
-    public function edit($id)
+    public function edit(string $id)
     {
         $status = Statuses::findOrFail($id);
         return view('statuses/edit-status', compact('status'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $status = Statuses::findOrFail($id);
         $data = $request->validate(
@@ -66,7 +66,7 @@ class StatusController extends Controller
         flash(__('messages.statusWasUpdated'), 'success');
         return redirect()->route('statuses.index');
     }
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $tasks = Task::where('status_id', $id)->exists();
         $status = Statuses::find($id);
