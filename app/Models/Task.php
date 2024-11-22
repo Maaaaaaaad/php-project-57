@@ -66,7 +66,7 @@ class Task extends Model
         return $this->status->name;
     }
 
-    public function labelsArr()
+    public function getLabels()
     {
         return $this->labels->toArray();
     }
