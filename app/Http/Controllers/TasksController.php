@@ -21,8 +21,8 @@ class TasksController extends Controller
             "assigned_to_id" => ''
         ];
 
-        $input = $request->query('filter', []);
-        $input = array_merge($defaultFilter, $input);
+        $input = $request->query('filter') ?? $defaultFilter;
+
 
 
         $tasks = QueryBuilder::for(Task::class)
@@ -31,8 +31,7 @@ class TasksController extends Controller
                 AllowedFilter::exact('created_by_id'),
                 AllowedFilter::exact('assigned_to_id'),
             ])
-            ->paginate(15)
-            ->appends(request()->query());
+            ->paginate(15);
 
         $statuses = Statuses::all();
         $users = User::all();
@@ -79,7 +78,7 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         $status = $task->gatStatusesName();
-        $labels = $task->getlabels();
+        $labels = $task->getLabels();
 
 
         return view('tasks/show-task', compact('task', 'status', 'labels'));
@@ -124,9 +123,9 @@ class TasksController extends Controller
 
     public function destroy(string $id)
     {
-        $task = Task::find($id);
-        $task?->labels()->detach();
-        $task?->delete();
+        $task = Task::findOrFail($id);
+        $task->labels()->detach();
+        $task->delete();
 
         flash(__('messages.taskWasDeleted'), 'success');
         return redirect()->route('tasks.index');

@@ -71,7 +71,7 @@ class StatusController extends Controller
     public function destroy(string $id)
     {
         $tasks = Task::where('status_id', $id)->exists();
-        $status = Statuses::find($id);
+        $status = Statuses::findOrFail($id);
 
         if ($tasks) {
             flash(__('messages.statusWasNotDeleted'), 'success');
