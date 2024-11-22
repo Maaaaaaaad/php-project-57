@@ -69,15 +69,16 @@ class LabelsController extends Controller
     }
     public function destroy(string $id)
     {
-        $label = Labels::find($id);
+        $label = Labels::findOrFail($id);
 
-        if (!$label?->getTasks()->exists()) {
+        if ($label->tasks->isNotEmpty()) {
             flash(__('messages.labelWasDeleted'), 'danger');
-            $label?->delete();
             return redirect()->route('labels.index');
+        } else {
+            $label->delete();
+            flash(__('messages.labelWasNotDeleted'), 'success');
         }
 
-        flash(__('messages.labelWasNotDeleted'), 'success');
         return redirect()->route('labels.index');
     }
 }
