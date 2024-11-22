@@ -78,8 +78,9 @@ class TasksController extends Controller
     public function show(string $id)
     {
         $task = Task::find($id);
-        $status = $task->status->name;
-        $labels = $task->labels;
+        $status = $task->getStatusesName();
+        $labels = $task->getlabels();
+
 
         return view('tasks/show-task', compact('task', 'status', 'labels'));
     }

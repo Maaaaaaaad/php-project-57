@@ -8,46 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\Models\User
+ * App\Models\Statuses
  *
  * @property int $id
  * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Label[] $labels
- * @property-read int|null $labels_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Status[] $statuses
- * @property-read int|null $statuses_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasksAssignedToMe
- * @property-read int|null $tasks_assigned_to_me_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasksCreatedByMe
- * @property-read int|null $tasks_created_by_me_count
- * @method static \Illuminate\Database\Eloquent\Builder|User create($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User find($value)
- * @method static User|null findOrFail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User first()
- * @method static User|null firstOrFail()
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User pluck($valueFirst, $valueSecond)
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses first()
+ * @method static Statuses|null firstOrFail()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses pluck($valueFirst, $valueSecond)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statuses whereUserId($value)
  */
-
 class Statuses extends Model
 {
     use HasFactory;

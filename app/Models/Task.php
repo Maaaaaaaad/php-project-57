@@ -8,44 +8,36 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\Models\User
+ * App\Models\Task
  *
  * @property int $id
  * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
+ * @property string|null $description
+ * @property int $status_id
+ * @property int|null $assigned_to_id
+ * @property int $created_by_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Label[] $labels
+ * @property-read \App\Models\User $creator
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Labels[] $labels
  * @property-read int|null $labels_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Status[] $statuses
- * @property-read int|null $statuses_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasksAssignedToMe
- * @property-read int|null $tasks_assigned_to_me_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasksCreatedByMe
- * @property-read int|null $tasks_created_by_me_count
- * @method static \Illuminate\Database\Eloquent\Builder|User create($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User find($value)
- * @method static User|null findOrFail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User first()
- * @method static User|null firstOrFail()
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User pluck($valueFirst, $valueSecond)
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin Eloquent
+ * @property-read \App\Models\Statuses $status
+ * @property-read \App\Models\User|null $worker
+ * @method static \Illuminate\Database\Eloquent\Builder|Task find($value)
+ * @method static Task|null findOrFail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task first()
+ * @method static Task|null firstOrFail()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereAssignedToId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedById($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
  */
 class Task extends Model
 {
@@ -67,5 +59,15 @@ class Task extends Model
     public function status()
     {
         return $this->belongsTo(Statuses::class);
+    }
+
+    public function gatStatusesName()
+    {
+        return $this->status->name;
+    }
+
+    public function labelsArr()
+    {
+        return $this->labels->toArray();
     }
 }

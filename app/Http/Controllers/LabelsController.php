@@ -71,7 +71,8 @@ class LabelsController extends Controller
     {
         $label = Labels::find($id);
 
-        if (!$label->tasks()->exists()) {
+
+        if (!$label->getTasks()->exists()) {
             flash(__('messages.labelWasDeleted'), 'danger');
             $label->delete();
             return redirect()->route('labels.index');
