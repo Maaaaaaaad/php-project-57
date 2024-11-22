@@ -58,6 +58,6 @@ class Labels extends Model
 
     public function getTasks()
     {
-        return $this->tasks()->exists();
+        return $this->tasks();
     }
 }

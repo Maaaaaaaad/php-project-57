@@ -49,7 +49,7 @@ Route::get('labels/{id}/edit', [LabelsController::class, 'edit'])
     ->name('labels.edit');
 Route::patch('labels/{id}', [LabelsController::class, 'update'])
     ->name('labels.update');
-Route::get('labels/{id}/delete', [LabelsController::class, 'destroy'])
+Route::get('labels/{id}', [LabelsController::class, 'destroy'])
     ->name('labels.destroy');
 
 require __DIR__ . '/auth.php';
