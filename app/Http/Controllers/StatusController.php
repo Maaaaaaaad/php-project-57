@@ -7,6 +7,7 @@ use App\Models\Task;
 use http\Exception;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class StatusController extends Controller
 {
@@ -66,6 +67,14 @@ class StatusController extends Controller
         flash(__('messages.statusWasUpdated'), 'success');
         return redirect()->route('statuses.index');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Statuses  $status
+     * @param Task  $task
+     * @return redirect
+     */
     public function destroy(string $id)
     {
         $tasks = Task::where('status_id', $id)->exists();
