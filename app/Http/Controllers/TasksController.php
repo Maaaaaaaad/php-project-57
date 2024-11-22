@@ -77,7 +77,7 @@ class TasksController extends Controller
     }
     public function show(string $id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
         $status = $task->gatStatusesName();
         $labels = $task->getlabels();
 

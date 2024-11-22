@@ -73,13 +73,13 @@ class StatusController extends Controller
         $tasks = Task::where('status_id', $id)->exists();
         $status = Statuses::find($id);
 
-        if (!$tasks) {
-                flash(__('messages.statusWasDeleted'), 'danger');
-                $status?->delete();
-                return redirect()->route('statuses.index');
+        if ($tasks) {
+            flash(__('messages.statusWasNotDeleted'), 'success');
+        } else {
+            $status->delete();
+            flash(__('messages.statusWasDeleted'), 'danger');
         }
 
-        flash(__('messages.statusWasNotDeleted'), 'success');
         return redirect()->route('statuses.index');
     }
 }
