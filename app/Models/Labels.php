@@ -17,10 +17,10 @@ use phpDocumentor\Reflection\Types\Static_;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
- * @property-read int|null $tasks_count
- * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Labels first()
  * @method static Labels|null firstOrFail()
+ * @method static Labels|null delete()
+ * @method static Labels|null getTasks()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels pluck($valueFirst, $valueSecond)

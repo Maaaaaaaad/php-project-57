@@ -6,6 +6,7 @@ use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use TYPO3\CMS\Reports\Status;
 
 /**
  * App\Models\Statuses
@@ -17,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
  * @property-read int|null $tasks_count
  * @property-read \App\Models\User $user
+ * @method static Statuses|null delete()
  * @method static \Illuminate\Database\Eloquent\Builder|Statuses first()
  * @method static Statuses|null firstOrFail()
  * @method static \Illuminate\Database\Eloquent\Builder|Statuses newModelQuery()

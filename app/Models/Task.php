@@ -23,6 +23,10 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $labels_count
  * @property-read \App\Models\Statuses $status
  * @property-read \App\Models\User|null $worker
+ * @method static Task|null delete()
+ * @method static Task|null gatStatusesName()
+ * @method static Task|null getLabels()
+ * @method static Task|null labels()
  * @method static \Illuminate\Database\Eloquent\Builder|Task find($value)
  * @method static Task|null findOrFail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task first()
