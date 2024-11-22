@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="grid col-span-full">
-        @dump($task)
             <h2 class="mb-5 text-3xl">
                 Просмотр задачи: {{$task->name}} <a href="{{ route('tasks.edit', ['id'=>"$task[id]"]) }}">⚙</a>
             </h2>
