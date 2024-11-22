@@ -21,7 +21,7 @@ use phpDocumentor\Reflection\Types\Static_;
  * @method static Labels|null firstOrFail()
  * @method static Labels|null delete()
  * @method static Labels|null getTasks()
- * @method static \Illuminate\Database\Query\Builder exists()
+ * @method static \Illuminate\Database\Query\Builder|Task exists()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Labels pluck($valueFirst, $valueSecond)
