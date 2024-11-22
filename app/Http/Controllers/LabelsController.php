@@ -36,7 +36,7 @@ class LabelsController extends Controller
 
         flash(__('messages.labelWasCreated'), 'success');
 
-        return redirect()->route('labels');
+        return redirect()->route('labels.index');
     }
     public function edit($id)
     {
@@ -61,7 +61,7 @@ class LabelsController extends Controller
         $label->save();
 
         flash(__('messages.labelWasUpdated'), 'success');
-        return redirect()->route('labels');
+        return redirect()->route('labels.index');
     }
     public function destroy($id)
     {
@@ -70,10 +70,10 @@ class LabelsController extends Controller
         if (!$label->tasks()->exists()) {
             flash(__('messages.labelWasDeleted'), 'danger');
             $label->delete();
-            return redirect()->route('labels');
+            return redirect()->route('labels.index');
         }
 
         flash(__('messages.labelWasNotDeleted'), 'success');
-        return redirect()->route('labels');
+        return redirect()->route('labels.index');
     }
 }

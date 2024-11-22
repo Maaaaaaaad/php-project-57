@@ -2,7 +2,7 @@
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Создать метку</h1>
 
-        <form class="w-50" method="POST" action="{{ route('label.store') }}">
+        <form class="w-50" method="POST" action="{{ route('labels.store') }}">
             @csrf
             <div class="flex flex-col">
                 <div>

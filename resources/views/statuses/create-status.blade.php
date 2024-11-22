@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Создать статус</h1>
-            <form class="w-50" method="POST" action="{{ route('status.store') }}">
+            <form class="w-50" method="POST" action="{{ route('statuses.store') }}">
                 @csrf
             <div class="mt-2">
                 <x-input-label for="name" :value="__('Имя')" />

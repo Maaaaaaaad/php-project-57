@@ -33,15 +33,15 @@
         <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                    <a href="{{ route('tasks') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('tasks.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         Задачи                                </a>
                 </li>
                 <li>
-                    <a href="{{ route('statuses') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('statuses.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         Статусы                                </a>
                 </li>
                 <li>
-                    <a href="{{ route('labels') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('labels.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         Метки                                </a>
                 </li>
             </ul>

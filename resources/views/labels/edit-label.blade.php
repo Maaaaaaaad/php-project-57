@@ -2,7 +2,7 @@
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Изменение метки</h1>
 
-        <form class="w-50" method="POST" action="{{ route('label.update', ["id" => "$label->id"]) }}">
+        <form class="w-50" method="POST" action="{{ route('labels.update', ["id" => "$label->id"]) }}">
             @method('PATCH')
             @csrf
             <div class="flex flex-col">

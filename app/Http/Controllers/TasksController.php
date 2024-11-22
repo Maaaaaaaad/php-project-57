@@ -70,11 +70,9 @@ class TasksController extends Controller
 
         $task->labels()->attach($request->labels);
 
-        flash('Задача успешно создана', 'success');
-        return redirect()->route('tasks');
+        flash(__('messages.taskWasCreated'), 'success');
+        return redirect()->route('tasks.index');
     }
-
-
     public function show($id)
     {
         $task = Task::find($id);
@@ -115,18 +113,18 @@ class TasksController extends Controller
 
         $task->labels()->sync($request->labels);
 
-        flash('Задача успешно изменена', 'success');
-        return redirect()->route('tasks');
+        flash(__('messages.taskWasUpdated'), 'success');
+        return redirect()->route('tasks.index');
     }
 
 
     public function destroy(string $id)
     {
-        $task = Task::findOrfail($id);
+        $task = Task::find($id);
         $task->labels()->detach();
         $task->delete();
 
-        flash('Задача успешно удалена', 'success');
-        return redirect()->route('tasks');
+        flash(__('messages.taskWasDeleted'), 'success');
+        return redirect()->route('tasks.index');
     }
 }

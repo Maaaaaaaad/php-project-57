@@ -11,68 +11,46 @@ Route::get('/', function () {
 });
 
 Route::get('task_statuses', [StatusController::class, 'index'])
-    ->name('statuses');
+    ->name('statuses.index');
 Route::post('task_statuses', [StatusController::class, 'store'])
-    ->name('status.store');
+    ->name('statuses.store');
 Route::get('task_statuses/create', [StatusController::class, 'create'])
-    ->name('status.create');
-
-
-Route::get('task_statuses/{id}', [StatusController::class, 'destroy'])
-    ->name('status.destroy');
-Route::patch('task_statuses/{id}', [StatusController::class, 'update'])
-    ->name('status.update');
-
+    ->name('statuses.create');
 Route::get('task_statuses/{id}/edit', [StatusController::class, 'edit'])
-    ->name('status.edit');
-Route::post('task_statuses/{id}/edit', [StatusController::class, 'edit'])
-    ->name('status.edit');
+    ->name('statuses.edit');
+Route::patch('task_statuses/{id}', [StatusController::class, 'update'])
+    ->name('statuses.update');
+Route::get('task_statuses/{id}/delete', [StatusController::class, 'destroy'])
+    ->name('statuses.destroy');
 
 
 Route::get('tasks', [TasksController::class, 'index'])
-    ->name('tasks');
-
-Route::get('tasks/{id}', [TasksController::class, 'show'])
-    ->name('task');
-
-
-Route::get('tasks/create', [TasksController::class, 'create'])
-    ->name('task.create');
+    ->name('tasks.index');
 Route::post('tasks', [TasksController::class, 'store'])
-    ->name('task.store');
-
-
-
-
-
-Route::get('tasks/{id}', [TasksController::class, 'destroy'])
-    ->name('task.destroy');
-Route::patch('tasks/{id}', [TasksController::class, 'update'])
-    ->name('task.update');
-
+    ->name('tasks.store');
+Route::get('tasks/create', [TasksController::class, 'create'])
+    ->name('tasks.create');
+Route::get('tasks/{id}', [TasksController::class, 'show'])
+    ->name('tasks.show');
 Route::get('tasks/{id}/edit', [TasksController::class, 'edit'])
-    ->name('task.edit');
-Route::post('tasks/{id}/edit', [TasksController::class, 'edit'])
-    ->name('task.edit');
+    ->name('tasks.edit');
+Route::patch('tasks/{id}', [TasksController::class, 'update'])
+    ->name('tasks.update');
+Route::get('tasks/{id}/delete', [TasksController::class, 'destroy'])
+    ->name('tasks.destroy');
 
 
 Route::get('labels', [LabelsController::class, 'index'])
-    ->name('labels');
+    ->name('labels.index');
 Route::post('labels', [LabelsController::class, 'store'])
-    ->name('label.store');
+    ->name('labels.store');
 Route::get('labels/create', [LabelsController::class, 'create'])
-    ->name('label.create');
-
-
-Route::patch('labels/{id}', [LabelsController::class, 'update'])
-    ->name('label.update');
-
+    ->name('labels.create');
 Route::get('labels/{id}/edit', [LabelsController::class, 'edit'])
-    ->name('label.edit');
-Route::post('labels/{id}/edit', [LabelsController::class, 'edit'])
-    ->name('label.edit');
-
-Route::get('labels/{id}', [LabelsController::class, 'destroy'])
-    ->name('label.destroy');
+    ->name('labels.edit');
+Route::patch('labels/{id}', [LabelsController::class, 'update'])
+    ->name('labels.update');
+Route::get('labels/{id}/delete', [LabelsController::class, 'destroy'])
+    ->name('labels.destroy');
 
 require __DIR__.'/auth.php';

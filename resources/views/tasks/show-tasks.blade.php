@@ -4,7 +4,7 @@
         <h1 class="mb-5 text-5xl">Задачи</h1>
         <div class="w-full flex items-center">
             <div>
-                <form method="GET" action="{{ route('tasks') }}">
+                <form method="GET" action="{{ route('tasks.index') }}">
                     <div class="flex">
                         <select class="rounded border-gray-300" name="filter[status_id]" id="filter[status_id]">
                             <option value="" selected>Статус</option>
@@ -30,7 +30,7 @@
             </div>
                 <div class="ml-auto"> </div>
             @auth
-            <a href="{{ route('task.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"> Создать задачу </a>
+            <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"> Создать задачу </a>
             @endauth
         </div>
 
@@ -53,16 +53,16 @@
                     <tr class="border-b border-dashed text-left">
                         <td>{{$task->id}}</td>
                         <td> {{$status::find($task['status_id'])->name}} </td>
-                        <td><a class="text-blue-600 hover:text-blue-900" href="{{route('tasks', ['id'=>"$task->id"])}}">{{$task->name}}</a></td>
+                        <td><a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', [$task])}}"> {{$task->name}}</a></td>
                         <td>{{$user::find($task['created_by_id'])->name}}</td>
                         <td>{{$user::find($task['assigned_to_id'])->name}}</td>
                         <td>{{date('d.m.Y', strtotime($status->created_at))}}</td>
                         <td>
                         @auth
                             @if(@$userId === $task->created_by_id)
-                         <a data-confirm="Вы уверены?" data-method="delete" href="{{ route('task.destroy', ['id'=>"$task->id"]) }}" class="text-red-600 hover:text-red-900">Удалить </a>
+                         <a data-confirm="Вы уверены?" data-method="delete" href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900">Удалить </a>
                             @endif
-                        <a href="{{ route('task.edit', ['id'=>"$task->id"]) }}" class="text-blue-600 hover:text-blue-900">Изменить</a>
+                        <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">Изменить</a>
                         @endauth
                         </td>
                     </tr>

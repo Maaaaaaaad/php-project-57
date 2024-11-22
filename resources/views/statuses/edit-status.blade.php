@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Изменение статуса</h1>
-        <form class="w-50" method="POST" action="{{ route('status.update', ["id" => "$status->id"] ) }}">
+        <form class="w-50" method="POST" action="{{ route('statuses.update', ["id" => "$status->id"] ) }}">
             @method('PATCH')
             @csrf
             <div class="flex flex-col">

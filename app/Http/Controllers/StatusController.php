@@ -35,7 +35,7 @@ class StatusController extends Controller
         $status->save();
 
         flash(__('messages.statusWasCreated'), 'success');
-        return redirect()->route('statuses');
+        return redirect()->route('statuses.index');
     }
     public function show(Statuses $status)
     {
@@ -60,7 +60,7 @@ class StatusController extends Controller
         $status->save();
 
         flash(__('messages.statusWasUpdated'), 'success');
-        return redirect()->route('statuses');
+        return redirect()->route('statuses.index');
     }
     public function destroy($id)
     {
@@ -70,10 +70,10 @@ class StatusController extends Controller
         if (!$tasks) {
                 flash(__('messages.statusWasDeleted'), 'danger');
                 $status->delete();
-                return redirect()->route('statuses');
+                return redirect()->route('statuses.index');
         }
 
         flash(__('messages.statusWasNotDeleted'), 'success');
-        return redirect()->route('statuses');
+        return redirect()->route('statuses.index');
     }
 }

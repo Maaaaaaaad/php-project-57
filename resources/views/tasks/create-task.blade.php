@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Создать задачу</h1>
-        <form class="w-50" method="POST" action="{{ route('task.store') }}">
+        <form class="w-50" method="POST" action="{{ route('tasks.store') }}">
             @csrf
             <div class="flex flex-col">
                 <div>
