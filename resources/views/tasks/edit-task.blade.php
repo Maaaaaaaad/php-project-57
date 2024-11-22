@@ -12,8 +12,8 @@
                 <div class="mt-2">
                     <input class="rounded border-gray-300 w-1/3"  type="text" name="name" id="name" value="{{$task->name}}">
                     @if ($errors->get('name'))
-                        @foreach($errors->get('name') as $errors)
-                            <div class="text-rose-600"> {{$errors}}</div>
+                        @foreach($errors->get('name') as $error)
+                            <div class="text-rose-600"> {{$error}}</div>
                         @endforeach
                     @endif
                 </div>
@@ -38,6 +38,11 @@
                         @endforeach
                     </select>
                 </div>
+                @if ($errors->get('status_id'))
+                    @foreach($errors->get('status_id') as $error)
+                        <div class="text-rose-600"> {{$error}}</div>
+                    @endforeach
+                @endif
                 <div class="mt-2">
                     <label for="assigned_to_id">Исполнитель</label>
                 </div>
@@ -53,6 +58,11 @@
                         @endforeach
                     </select>
                 </div>
+                @if ($errors->get('assigned_to_id'))
+                    @foreach($errors->get('assigned_to_id') as $error)
+                        <div class="text-rose-600"> {{$error}}</div>
+                    @endforeach
+                @endif
                 <div class="mt-2">
                     <label for="labels">Метки</label>
                 </div>
@@ -70,7 +80,7 @@
                     </select>
                 </div>
                 <div class="mt-2">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Изменить</button>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Обновить</button>
                 </div>
             </div>
         </form>

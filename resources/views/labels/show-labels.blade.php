@@ -30,7 +30,7 @@
                     <td>{{date('d.m.Y', strtotime($label->created_at))}}</td>
                     <td>
                         @auth
-                            <a data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" href="{{ route('labels.destroy', ['id' => "$label->id"] ) }}"> Удалить </a>
+                            <a data-method="delete" class="text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены?')" href="{{ route('labels.destroy', ['id' => "$label->id"] ) }}"> Удалить </a>
                             <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', ['id' => "$label->id"] ) }}"> Изменить </a>
                         @endauth
                     </td>

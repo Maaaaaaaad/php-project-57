@@ -58,14 +58,15 @@ class TasksController extends Controller
 
         $request->merge(['created_by_id' => $id]);
 
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|unique:tasks',
             'status_id' => 'required',
             'created_by_id' => 'required',
+            'assigned_to_id' => 'required'
         ]);
 
         $task = new Task();
-        $task->fill($request->all());
+        $task->fill($data);
         $task->save();
 
         $task->labels()->attach($request->labels);

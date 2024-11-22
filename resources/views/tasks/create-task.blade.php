@@ -1,14 +1,19 @@
 <x-app-layout>
     <div class="grid col-span-full">
         <h1 class="mb-5 text-5xl">Создать задачу</h1>
-        <form class="w-50" method="POST" action="{{ route('tasks.store') }}">
+        <form class="w-50" method="POST" action="{{ route('tasks.store') }} ">
             @csrf
             <div class="flex flex-col">
                 <div>
                     <label for="name">Имя</label>
                 </div>
                 <div class="mt-2">
-                    <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name">
+                    <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name" value="{{ old('name', $task->name)}}" >
+                    @if ($errors->get('name'))
+                        @foreach($errors->get('name') as $error)
+                            <div class="text-rose-600"> {{$error}}</div>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="mt-2">
                     <label for="description">Описание</label>
@@ -27,6 +32,12 @@
                             @endforeach
                     </select>
                 </div>
+                @if ($errors->get('status_id'))
+                    @foreach($errors->get('status_id') as $error)
+                        <div class="text-rose-600"> {{$error}}</div>
+                    @endforeach
+                @endif
+
                 <div class="mt-2">
                     <label for="assigned_to_id">Исполнитель</label>
                 </div>
@@ -38,6 +49,11 @@
                             @endforeach
                     </select>
                 </div>
+                @if ($errors->get('assigned_to_id'))
+                    @foreach($errors->get('assigned_to_id') as $error)
+                        <div class="text-rose-600"> {{$error}}</div>
+                    @endforeach
+                @endif
                 <div class="mt-2">
                     <label for="labels">Метки</label>
                 </div>

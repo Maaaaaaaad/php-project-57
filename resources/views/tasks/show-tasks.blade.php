@@ -60,9 +60,9 @@
                         <td>
                         @auth
                             @if(@$userId === $task->created_by_id)
-                         <a data-confirm="Вы уверены?" data-method="delete" href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900">Удалить </a>
+                                    <a href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены?')"> Удалить </a>
                             @endif
-                        <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">Изменить</a>
+                                <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">Изменить</a>
                         @endauth
                         </td>
                     </tr>

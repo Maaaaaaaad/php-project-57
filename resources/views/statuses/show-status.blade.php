@@ -28,7 +28,7 @@
                 <td>{{date('d.m.Y', strtotime($status->created_at))}}</td>
                 <td>
                     @auth
-                    <a href="{{ route('statuses.destroy', ['id'=>"$status->id"]) }}" data-confirm="Вы уверены?" data-method="delete" class="text-red-600 hover:text-red-900" > Удалить </a>
+                    <a href="{{ route('statuses.destroy', ['id'=>"$status->id"]) }}" data-method="delete" class="text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены?')" > Удалить </a>
                     <a href="{{ route('statuses.edit', ['id'=>"$status->id"]) }}" class="text-blue-600 hover:text-blue-900"> Изменить </a>
                     @endauth
                 </td>
