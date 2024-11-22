@@ -63,7 +63,7 @@ class TasksController extends Controller
             'status_id' => 'required',
             'created_by_id' => 'required',
             'assigned_to_id' => 'required',
-            'description'=> ''
+            'description' => ''
         ]);
 
         $task = new Task();
@@ -108,7 +108,7 @@ class TasksController extends Controller
             'name' => 'required',
             'status_id' => 'required',
             'assigned_to_id' => 'required',
-            'description'=> ''
+            'description' => ''
         ]);
 
         $task->fill($data);

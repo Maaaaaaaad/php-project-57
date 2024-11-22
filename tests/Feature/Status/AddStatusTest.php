@@ -6,7 +6,6 @@ use App\Models\Statuses;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-
 class AddStatusTest extends TestCase
 {
     use RefreshDatabase;
@@ -18,7 +17,7 @@ class AddStatusTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testCanAddNewStatus() : void
+    public function testCanAddNewStatus(): void
     {
         $status = Statuses::factory()->create();
 
