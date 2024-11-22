@@ -72,11 +72,11 @@ class LabelsController extends Controller
         $label = Labels::findOrFail($id);
 
         if ($label->tasks->isNotEmpty()) {
-            flash(__('messages.labelWasDeleted'), 'danger');
+            flash(__('messages.labelWasNotDeleted'), 'success');
             return redirect()->route('labels.index');
         } else {
             $label->delete();
-            flash(__('messages.labelWasNotDeleted'), 'success');
+            flash(__('messages.labelWasDeleted'), 'danger');
         }
 
         return redirect()->route('labels.index');
