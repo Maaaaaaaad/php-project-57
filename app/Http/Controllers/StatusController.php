@@ -68,13 +68,6 @@ class StatusController extends Controller
         return redirect()->route('statuses.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Statuses  $status
-     * @param Task  $task
-     * @return redirect
-     */
     public function destroy(string $id)
     {
         $tasks = Task::where('status_id', $id)->exists();
@@ -82,7 +75,7 @@ class StatusController extends Controller
 
         if (!$tasks) {
                 flash(__('messages.statusWasDeleted'), 'danger');
-                $status->delete();
+                $status?->delete();
                 return redirect()->route('statuses.index');
         }
 
