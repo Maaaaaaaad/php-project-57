@@ -67,12 +67,6 @@ class LabelsController extends Controller
         flash(__('messages.labelWasUpdated'), 'success');
         return redirect()->route('labels.index');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Labels $label
-     * @return redirect
-     */
     public function destroy(string $id)
     {
         $label = Labels::find($id);
